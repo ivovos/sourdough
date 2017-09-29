@@ -1,13 +1,5 @@
 {
 	"steps": [{
-		"name":"Activate Starter", 
-		"duration":480
-	},
-	{
-		"name":"Starter in Fridge",
-		"duration": 720
-	},
-	{
 		"name":"Make Leaven",
 		"duration": 480
 	},

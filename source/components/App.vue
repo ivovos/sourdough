@@ -1,6 +1,6 @@
 <template>
 	<div id='app'>
-		<h1>What time would you like fresh bread?</h1>
+		<h1>When would you like your fresh bread?</h1>
 
 			<div class="day-time-picker">
 				<div class="day-picker">
@@ -27,7 +27,7 @@
 			</div>
 
 		<div class="result">
-			<div class="label small-caps">Start at</div>
+			<div class="label small-caps">< Start at ></div>
 			<div class="medium-text">{{ startDay }} , {{ startTime }}</div>
 		</div>
 		<button v-on:click="getValue">Start Plan</button>
@@ -62,6 +62,14 @@ export default {
 		getValue(){
 			console.log(this.$refs.hour.swiper.realIndex + " : " + this.swiperSlidesMinutes[this.$refs.minutes.swiper.realIndex] );
 			console.log("step: " + this.steps[2].name + " duration : " + this.steps[2].duration)
+		},
+		getPlanDuration(){
+			// returns planDuration in minutes
+			var planDuration = 0
+			for (var step in this.steps){
+				planDuration = planDuration + this.steps[step].duration
+			}
+			return planDuration;
 		}
 	},
 	computed: {
@@ -69,6 +77,7 @@ export default {
     },
 	mounted() {
 		console.log(Moment.now());
+		console.log("duration of plan: " + this.getPlanDuration());
 	}
 }
 </script>
@@ -111,7 +120,7 @@ export default {
 		text-align: center;
 	}
 	.medium-text{
-		font-size: 1.125em;
+		font-size: 1.25em;
 	}
 	.result{
 		text-align: center;

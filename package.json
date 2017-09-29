@@ -63,6 +63,7 @@
         "mocha": "^3.4.2",
         "moment": "^2.18.1",
         "vue": "^2.1.8",
+        "vue-awesome": "^2.3.3",
         "vue-awesome-swiper": "^2.3.2"
     },
     "repository": "https://github.com/Normally/webpack-vue.git",
