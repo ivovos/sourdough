@@ -1,7 +1,7 @@
 {
-    "name": "webpack-vue",
+    "name": "bread",
     "version": "0.0.1",
-    "description": "A Vue/Webpack/Cordova boilerplate for prototyping",
+    "description": "a project about bread",
     "main": "source/js/main.js",
     "scripts": {
         "start": "cross-env NODE_ENV=development webpack-dev-server --inline --hot ",
@@ -66,9 +66,7 @@
     },
     "repository": "https://github.com/Normally/webpack-vue.git",
     "cordova": {
-        "plugins": {
-        },
-        "platforms": [
-        ]
+        "plugins": {},
+        "platforms": []
     }
 }

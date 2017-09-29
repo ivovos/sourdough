@@ -83,3 +83,4 @@ Favicons for desktop and webapps are generated automatically.
 There is an [examples](source/examples) folder, check it out.<br/>
 Or view a demo here https://normally.github.io/webpack-vue/ 
 
+# bread

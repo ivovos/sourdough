@@ -1,0 +1,102 @@
+{
+	"steps": [{
+		"name":"Activate Starter", 
+		"duration":480
+	},
+	{
+		"name":"Starter in Fridge",
+		"duration": 720
+	},
+	{
+		"name":"Make Leaven",
+		"duration": 480
+	},
+	{
+		"name":"Mix Dough",
+		"duration": 10
+	},
+	{
+		"name":"Rest Dough",
+		"duration": 30
+	},
+	{
+		"name":"Add Salt",
+		"duration": 5
+	},
+	{
+		"name":"Bulk Rise - 1st Fold",
+		"duration": 30
+	},
+	{
+		"name":"Bulk Rise - 2nd Fold",
+		"duration": 30
+	},
+	{
+		"name":"Bulk Rise - 3rd Fold",
+		"duration": 30
+	},
+	{
+		"name":"Bulk Rise - 4th Fold",
+		"duration": 30
+	},
+	{
+		"name":"Bulk Rise - 5th Fold",
+		"duration": 30
+	},
+	{
+		"name":"Bulk Rise - 6th Fold",
+		"duration": 30
+	},
+	{
+		"name":"Initial Shape",
+		"duration": 10
+	},
+	{
+		"name":"Final Shape & Fold",
+		"duration": 10
+	},
+	{
+		"name":"Final Rise",
+		"duration": 480
+	},
+	{
+		"name":"Preheat",
+		"duration": 20
+	},
+	{
+		"name":"Bake Covered",
+		"duration": 20
+	},
+	{
+		"name":"Bake Open",
+		"duration": 15
+	},
+	{
+		"name":"Cool down",
+		"duration": 15
+	},
+	{
+		"name":"Slice & Eat",
+		"duration": 0
+	}]	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
