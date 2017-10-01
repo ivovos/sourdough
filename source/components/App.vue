@@ -1,10 +1,13 @@
 <template>
 	<div id='app'>
+
 		<h1>When would you like your fresh bread?</h1>
 
 			<div class="day-time-picker">
 				<div class="day-picker">
-					<div class="small-caps">saturday</div>
+					<img class="icon" src="../img/chevron-left.png">
+					<div class="small-caps"> {{ endDay }} </div>
+					<img class="icon" src="../img/chevron-right.png">
 				</div>
 				<div class="time-picker">
 					<swiper :options="sliderOptions" class='pad' ref="hour">
@@ -27,18 +30,19 @@
 			</div>
 
 		<div class="result">
-			<div class="label small-caps">< Start at ></div>
+			<div class="label small-caps">Start at</div>
 			<div class="medium-text">{{ startDay }} , {{ startTime }}</div>
 		</div>
-		<button v-on:click="getValue">Start Plan</button>
+		<button class="text-btn">View plan</button>
+		<button v-on:click="getEndTime">Start Plan</button>
 	</div>
 </template>
 
 <script>
 
 import data from 'js/data'
-import Moment from 'moment'
-
+import moment from 'moment'
+import 'vue-awesome/icons'
 
 export default {
 	name: 'app',
@@ -54,12 +58,18 @@ export default {
 			swiperSlidesHours: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24],
 			swiperSlidesMinutes: ['00','05',10,15,20,25,30,35,40,45,50,55],
 			steps: data.steps,
+			endDay: "Saturday",
 			startDay: "Friday",
-			startTime: "10:40"
+			startTime: "10:40",
+			dm: 5
 		}
 	},
 	methods: {
-		getValue(){
+		moment: function() {
+			return moment(dm,"MM/DD/YYYY").format('YYYY-MM-DD');
+		},
+		getEndTime(){
+			// this shoiuld return the sliders turned into moment.js time	
 			console.log(this.$refs.hour.swiper.realIndex + " : " + this.swiperSlidesMinutes[this.$refs.minutes.swiper.realIndex] );
 			console.log("step: " + this.steps[2].name + " duration : " + this.steps[2].duration)
 		},
@@ -73,11 +83,18 @@ export default {
 		}
 	},
 	computed: {
+		// take the selected time, day , hour and minutes
+
+		// substract the duration of the plan
+
+		// take the new time and put it into a format
+	
    
     },
 	mounted() {
-		console.log(Moment.now());
-		console.log("duration of plan: " + this.getPlanDuration());
+		
+	 	console.log('THIS MOMENT: ' + moment(moment(),"MM/DD/YYYY").format('DD-MM-YYYY'));
+	 
 	}
 }
 </script>
@@ -92,16 +109,28 @@ export default {
 	justify-content: space-between;
 	.pad{
 		width:7em;
-		height:120px;
+		height:100px;
+		line-height: 100px;
 		margin: 5%;
+		background-color: #EEE;
 	}
 	h1{
 		font-size: 2em;
+		text-align: center;
+	}
+	.icon{
+		height: 16px;
+		margin: 2px 10px 0 10px;
 	}
 	.day-time-picker{
 		display: flex;
 		flex-direction: column;
 		text-align: center;
+	}
+	.day-picker{
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
 	}
 	.time-picker{
 		display: flex;
@@ -133,6 +162,10 @@ export default {
 		font-size: 16px;
 		align-self: flex-end;
 	}
-
+	.text-btn{
+		border: none;
+		text-decoration: underline;
+		color: blue;
+	}
 }
 </style>
