@@ -37,3 +37,7 @@ void new Vue({
 		bus: bus
 	}
 })
+
+Vue.config.productionTip = false;
+
+

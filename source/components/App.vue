@@ -1,13 +1,13 @@
 <template>
 	<div id='app'>
 
-		<h1>When would you like your fresh bread?</h1>
+		<h1>When do you want fresh bread?</h1>
 
 			<div class="day-time-picker">
 				<div class="day-picker">
-					<img class="icon" src="../img/chevron-left.png">
-					<div class="small-caps"> {{ endDay }} </div>
-					<img class="icon" src="../img/chevron-right.png">
+					<img @click="substractDay" class="icon" src="../img/chevron-left.png">
+					<div class="small-caps"> {{ daysOfTheWeek[endDay] }} </div>
+					<img @click="addDay" class="icon" src="../img/chevron-right.png">
 				</div>
 				<div class="time-picker">
 					<swiper :options="sliderOptions" class='pad' ref="hour">
@@ -31,10 +31,20 @@
 
 		<div class="result">
 			<div class="label small-caps">Start at</div>
-			<div class="medium-text">{{ startDay }} , {{ startTime }}</div>
+			<div class="medium-text">{{ daysOfTheWeek[startDay] }} , {{ startHour }}:{{ startMinutes }} </div>
 		</div>
-		<button class="text-btn">View plan</button>
-		<button v-on:click="getEndTime">Start Plan</button>
+		<button @click="showPlan" class="text-btn">View plan</button>
+		<button @click="getEndTime">Start Plan</button>
+
+		<div v-if="planVisible" class="plan-view">
+			<ul>
+				<li v-for="step in steps" :key="step.id">
+					{{ stepStartTimes[step.id] }} {{ step.duration  }} minutes - {{ step.name }}
+				</li>
+				<button @click="showPlan" class="text-btn">Close plan</button>
+			</ul>
+		</div>
+
 	</div>
 </template>
 
@@ -58,20 +68,36 @@ export default {
 			swiperSlidesHours: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24],
 			swiperSlidesMinutes: ['00','05',10,15,20,25,30,35,40,45,50,55],
 			steps: data.steps,
-			endDay: "Saturday",
-			startDay: "Friday",
-			startTime: "10:40",
-			dm: 5
+			daysOfTheWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+			stepStartTimes:["08:00","10:00","12:00"],
+			endDay: 5,
+			startDay: 5,
+			startHour: 10,
+			startMinutes: 40,
+			planVisible: false
 		}
 	},
 	methods: {
 		moment: function() {
 			return moment(dm,"MM/DD/YYYY").format('YYYY-MM-DD');
 		},
+		substractDay: function(){
+			this.endDay = this.endDay - 1;
+			if(this.endDay < 0){
+				this.endDay = 6;
+			}
+		},
+		addDay: function(){
+			this.endDay = this.endDay + 1;
+				if(this.endDay > 6){
+				this.endDay = 0;
+			}
+		},
 		getEndTime(){
-			// this shoiuld return the sliders turned into moment.js time	
-			console.log(this.$refs.hour.swiper.realIndex + " : " + this.swiperSlidesMinutes[this.$refs.minutes.swiper.realIndex] );
-			console.log("step: " + this.steps[2].name + " duration : " + this.steps[2].duration)
+			var endHour = this.$refs.hour.swiper.realIndex;
+			var endMinutes = this.swiperSlidesMinutes[this.$refs.minutes.swiper.realIndex];
+			var endDay = moment().add(1, 'days'); 
+			var endTime = moment(endHour + ' '+endMinutes);
 		},
 		getPlanDuration(){
 			// returns planDuration in minutes
@@ -80,21 +106,24 @@ export default {
 				planDuration = planDuration + this.steps[step].duration
 			}
 			return planDuration;
+		},
+		showPlan(){
+			this.planVisible = !this.planVisible
 		}
 	},
 	computed: {
-		// take the selected time, day , hour and minutes
-
-		// substract the duration of the plan
-
-		// take the new time and put it into a format
-	
-   
+		defineEndTime(){
+			this.endTime = moment().format('dddd');
+		}   
     },
 	mounted() {
-		
-	 	console.log('THIS MOMENT: ' + moment(moment(),"MM/DD/YYYY").format('DD-MM-YYYY'));
-	 
+		var lastHour = 10; // when is the latest you want to start making bread
+		var dateNow = moment();
+		if(dateNow.hour() >= lastHour){
+			dateNow.add(1,'day').set({'hour':9,'minute':0});
+		}
+
+		console.log('>> D A T E ' + dateNow.format("dddd, h:mm"));
 	}
 }
 </script>
@@ -130,7 +159,7 @@ export default {
 	.day-picker{
 		display: flex;
 		flex-direction: row;
-		justify-content: center;
+		justify-content: space-between;
 	}
 	.time-picker{
 		display: flex;
@@ -166,6 +195,15 @@ export default {
 		border: none;
 		text-decoration: underline;
 		color: blue;
+	}
+	.plan-view{
+		display: flex;
+		z-index: 5;
+		position: absolute;
+		background-color: white;
+		width: 100%;
+		height: 100%;		
+
 	}
 }
 </style>
