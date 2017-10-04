@@ -11,16 +11,12 @@
 				</div>
 				<div class="time-picker">
 					<swiper :options="sliderOptions" class='pad' ref="hour">
-					
-
 						<swiper-slide v-for="slide in swiperSlidesHours" :key="slide.id">
 							<span class="numbers-large">{{ slide.toString()}}</span>
 						</swiper-slide>
-
 					</swiper>
 					<div class="colon"><span class="numbers-large">:</span></div>
 					<swiper :options="sliderOptions" class='pad' ref="minutes">
-
 						<swiper-slide v-for="slide in swiperSlidesMinutes" :key="slide.id">
 							<span class="numbers-large">{{ slide.toString()}}</span>
 						</swiper-slide>
@@ -33,15 +29,16 @@
 			<div class="label small-caps">Start at</div>
 			<div class="medium-text">{{ daysOfTheWeek[startDay] }} , {{ startHour }}:{{ startMinutes }} </div>
 		</div>
-		<button @click="showPlan" class="text-btn">View plan</button>
-		<button @click="getEndTime">Start Plan</button>
+		<button @click="showPlan">Create Plan</button>
 
 		<div v-if="planVisible" class="plan-view">
 			<ul>
+				<button @click="showPlan" class="text-btn">
+				Back</button>
+
 				<li v-for="step in steps" :key="step.id">
-					{{ stepStartTimes[step.id] }} {{ step.duration  }} minutes - {{ step.name }}
+					{{ step.stepTime }} {{ step.name }} {{ step.duration  }} min 
 				</li>
-				<button @click="showPlan" class="text-btn">Close plan</button>
 			</ul>
 		</div>
 
@@ -67,9 +64,10 @@ export default {
 			},
 			swiperSlidesHours: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24],
 			swiperSlidesMinutes: ['00','05',10,15,20,25,30,35,40,45,50,55],
-			steps: data.steps,
+			steps: data.steps,	
+			stepTimes: ["08:00","10:00","12:00"],
 			daysOfTheWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-			stepStartTimes:["08:00","10:00","12:00"],
+			startTime: null,
 			endDay: 5,
 			startDay: 5,
 			startHour: 10,
@@ -96,8 +94,8 @@ export default {
 		getEndTime(){
 			var endHour = this.$refs.hour.swiper.realIndex;
 			var endMinutes = this.swiperSlidesMinutes[this.$refs.minutes.swiper.realIndex];
-			var endDay = moment().add(1, 'days'); 
-			var endTime = moment(endHour + ' '+endMinutes);
+			var endTime = moment().add(1, 'days').set({'hour': endHour, 'minute':endMinutes}); 
+			return endTime;
 		},
 		getPlanDuration(){
 			// returns planDuration in minutes
@@ -107,7 +105,37 @@ export default {
 			}
 			return planDuration;
 		},
+		createPlan(){
+			console.log(this.getPlanDuration());
+			var stepTimes = []
+			console.log('end time ='+this.getEndTime().format('dddd hh mm'));
+			this.startTime = this.getEndTime().subtract(this.getPlanDuration(),'minute');
+			console.log('starttime ='+this.startTime.format('dddd hh mm'));
+
+
+			// for (var i = 0; i < thissteps; i++) {
+   //  		alert(myStringArray[i]);
+   //  		//Do something
+			// }
+
+			console.log('startTime: '+this.startTime);
+			for (var i = 0; i < this.steps.length; i++) {
+				this.steps[i].stepTime = this.startTime.add(this.steps[i].duration).format('ddd hh mm');
+			} // this doesn't work because the moment.js object is mutuable?
+
+			// console.log(this.steps.length);
+			// console.log(this.steps[2].stepTime);
+
+			//this.steps[1].stepTime = this.startTime.add(this.steps[0].duration, 'minutes').format('ddd hh mm');
+			// strartTime = getEndtime - planDuration
+			// stepTime[0] = startTime + 
+			// stepTime[1] = starTime + steps[0].duration
+			// stepTime[2] = starTime + steps[0].duration + steps[1].duration
+
+			// console.log('start'= startTime + ' , step 1:' + stepTime[0] + ' ,' + stepTime[1])
+			},
 		showPlan(){
+			this.createPlan();
 			this.planVisible = !this.planVisible
 		}
 	},
