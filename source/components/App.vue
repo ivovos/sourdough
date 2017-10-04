@@ -120,12 +120,10 @@ export default {
 
 			console.log('startTime: '+this.startTime);
 			for (var i = 0; i < this.steps.length; i++) {
-				this.steps[i].stepTime = this.startTime.add(this.steps[i].duration).format('ddd hh mm');
-			} // this doesn't work because the moment.js object is mutuable?
+				this.steps[i].stepTime = this.startTime.add(this.steps[i].duration,'minutes').format('ddd hh mm');
+			} 
 
-			// console.log(this.steps.length);
-			// console.log(this.steps[2].stepTime);
-
+			
 			//this.steps[1].stepTime = this.startTime.add(this.steps[0].duration, 'minutes').format('ddd hh mm');
 			// strartTime = getEndtime - planDuration
 			// stepTime[0] = startTime + 
@@ -175,6 +173,9 @@ export default {
 		font-size: 2em;
 		text-align: center;
 	}
+	ul{
+		list-style: none;
+	}	
 	.icon{
 		height: 16px;
 		margin: 2px 10px 0 10px;
@@ -230,8 +231,9 @@ export default {
 		position: absolute;
 		background-color: white;
 		width: 100%;
-		height: 100%;		
-
+		height: 100%;
+		line-height: 1.75em;
+		
 	}
 }
 </style>
