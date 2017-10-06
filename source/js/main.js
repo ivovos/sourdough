@@ -4,6 +4,7 @@ import App from 'components/Device' // or App
 import 'sass/global' // Import global styles
 import 'inobounce' // Disable elastic scrolling on iOS
 
+
 // Remove click delay on touch devices
 import FastClick from 'fastclick'
 if ('addEventListener' in document) {

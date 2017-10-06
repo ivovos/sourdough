@@ -1,7 +1,7 @@
 <template>
 	<div id='app'>
 
-		<h1>When do you want fresh bread?</h1>
+		<div class="h1">When do you want fresh bread?</div>
 
 			<div class="day-time-picker">
 				<div class="day-picker">

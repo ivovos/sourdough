@@ -17,28 +17,9 @@
 		"duration": 5
 	},
 	{
-		"name":"Bulk Rise - 1st Fold",
-		"duration": 30
-	},
-	{
-		"name":"Bulk Rise - 2nd Fold",
-		"duration": 30
-	},
-	{
-		"name":"Bulk Rise - 3rd Fold",
-		"duration": 30
-	},
-	{
-		"name":"Bulk Rise - 4th Fold",
-		"duration": 30
-	},
-	{
-		"name":"Bulk Rise - 5th Fold",
-		"duration": 30
-	},
-	{
-		"name":"Bulk Rise - 6th Fold",
-		"duration": 30
+		"name":"Bulk Rise",
+		"duration": 180,
+		"folds": 6
 	},
 	{
 		"name":"Initial Shape",
