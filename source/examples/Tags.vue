@@ -82,9 +82,9 @@ export default {
 @import '../sass/variables';
 
 #tags {
-	text-align: left;
+	text-align: center;
 	position: relative;
-	padding:30px;
+	padding:20px;
 	padding-top:0;
 	min-height:450px;
 	h2, h3{
@@ -97,8 +97,8 @@ export default {
 	}
 	.tag{
 		padding:10px 20px;
-		margin-right: 5px;
-		margin-bottom: 5px;
+		margin-right: 10px;
+		margin-bottom: 10px;
 		border:1px solid dodgerblue;
 		border-radius: 100px;
 		display: inline-block;
@@ -129,8 +129,8 @@ export default {
 	.buttons{
 		margin-top:20px;
 		position: absolute;
-		bottom:30px;
-		left:30px;
+		bottom:0;
+		left:0;
 		width: 100%;
 		.button{
 			display: inline-block;
@@ -139,7 +139,6 @@ export default {
 			font-weight: bold;
 			width:80px;
 			height:40px;
-			text-align: center;
 			line-height: 35px;
 			border-radius: 4px;
 			text-decoration: none;

@@ -2,14 +2,7 @@
 
 A rapid prototyping boilerplate with support for Cordova.
 
-
-#### Clone
-
-```
-git clone --depth=1 https://github.com/Normally/webpack-vue.git folder-name
-```
-
-#### Update details & install dependencies
+#### Install
 
 ```js
 yarn init && yarn
@@ -20,7 +13,7 @@ yarn init && yarn
 ```js
 yarn start
 
-// Live preview at localhost:3000
+// Preview at localhost:3000
 ```
 
 #### Build
@@ -28,8 +21,7 @@ yarn start
 ```js
 yarn build
 
-// Creates www folder with compiled code
-
+// yarn buildfast - for no compression
 ```
 
 #### Bump

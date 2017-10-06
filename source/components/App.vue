@@ -1,6 +1,5 @@
 <template>
 	<div id='app'>
-<<<<<<< HEAD
 
 		<div class="h1">When do you want fresh bread?</div>
 
@@ -43,10 +42,6 @@
 			</ul>
 		</div>
 
-=======
-		<h1>{{ title }}</h1>
-		cordovaReady: <b>{{ cordovaReady }}</b>
->>>>>>> ea3ec5f085aae5e921f2175fbefacbc81f93d5d9
 	</div>
 </template>
 
@@ -142,17 +137,11 @@ export default {
 			this.planVisible = !this.planVisible
 		}
 	},
-<<<<<<< HEAD
 	computed: {
 		defineEndTime(){
 			this.endTime = moment().format('dddd');
 		}   
     },
-=======
-	methods: {},
-	computed: {},
-	watch: {},
->>>>>>> ea3ec5f085aae5e921f2175fbefacbc81f93d5d9
 	mounted() {
 		var lastHour = 10; // when is the latest you want to start making bread
 		var dateNow = moment();
