@@ -1,7 +1,7 @@
 <template>
 	<div id='app'>
 
-		<div class="h1">When the fuck do you want fresh bread?</div>
+		<h1>When the fuck do you want fresh bread?</h1>
 
 			<div class="day-time-picker">
 				<div class="day-picker">
@@ -25,10 +25,7 @@
 				</div>
 			</div>
 
-		<div class="result">
-			<div class="label small-caps">Start at</div>
-			<div class="medium-text">{{ daysOfTheWeek[startDay] }} , {{ startHour }}:{{ startMinutes }} </div>
-		</div>
+	
 		<button @click="showPlan">Create Plan</button>
 
 		<div v-if="planVisible" class="plan-view">
